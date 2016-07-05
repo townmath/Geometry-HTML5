@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rotating Square</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var canvas;
+	var ctx;
+	
+	function init() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+		ctx.fillStyle =  "#FF0000";
+		ctx.strokeStyle = "#000000";
+		ctx.save(); //saves current state of canvas
+		ctx.translate(canvas.width / 2, canvas.height / 2); //translates origin to middle
+		setInterval(draw, 100);
+	}
+	function draw() {
+		//ctx.restore(); //restores canvas to saved position (not needed here, but important)
+		ctx.clearRect(-1 * canvas.width/2, -1 * canvas.height/2, canvas.width, canvas.height);
+	//begin circle
+		ctx.beginPath();
+		ctx.arc(0,0,50*Math.sqrt(2),0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+		ctx.stroke();
+	//end circle
+	//begin square
+		ctx.fillRect(-50, -50, 100, 100);
+		ctx.strokeRect(-50, -50, 100, 100);
+	//end square
+		ctx.rotate(Math.PI/36);  // rotates axes 5 degrees
+	}
+</script>
+</head>
+<body onload="init()">
+<canvas id="optical" width="700" height="500">No support for canvas</canvas>
+</body>
+</html>

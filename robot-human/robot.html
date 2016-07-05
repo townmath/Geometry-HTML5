@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Robot</title>
+		<meta charset="utf-8">
+
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="600">
+			<!-- Insert fallback content here -->
+		</canvas>
+		
+			<script type="text/javascript">
+				var canvas = document.getElementById("myCanvas");
+				var context = canvas.getContext("2d");
+				context.strokeRect(20,20,460,460); // Square - head (notice: default fillStyle is black)
+				context.fillStyle = '#00ff00'; // green eyes
+				context.fillRect(150, 80, 50, 50); // Square - left eye (x, y, width, height)
+				context.fillRect(300, 80, 50, 50); // Square - right eye x, y is the location of top corner	
+				context.strokeStyle = '#ff0000'; // red mouth		
+				context.strokeRect(150, 300, 200, 100); // Rectangle - mouth (x, y, width, height)
+				context.fillStyle = '#0000ff'; //blue nose
+				context.fillRect(200, 180, 100, 50); // Rectangle - nose
+				//body
+				context.strokeStyle = '#000000' // black body
+				context.beginPath(); // Start the path
+				context.moveTo(250, 480); // Set the path origin
+				context.lineTo(250, 550); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Outline the path
+				//arms
+				context.beginPath(); // Start the path
+				context.moveTo(200, 500); // Set the path origin
+				context.lineTo(300, 500); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Fill the path
+				//left leg
+				context.beginPath(); // Start the path
+				context.moveTo(200, 600); // Set the path origin
+				context.lineTo(250, 550); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Fill the path
+				//right leg
+				context.beginPath(); // Start the path
+				context.moveTo(250, 550); // Set the path origin
+				context.lineTo(300, 600); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Fill the path
+		</script>
+	</body>
+</html>

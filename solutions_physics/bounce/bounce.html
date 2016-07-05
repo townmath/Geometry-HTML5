@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bounce</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="ball.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript">
+
+	function init() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		var ball = new Ball(40, "#FF0000");
+		var degAngle = 45;
+		var angle = degAngle * Math.PI / 180;
+		var speed = 1;
+		var vx = Math.cos(angle) * speed;
+		var vy = Math.sin(angle) * speed;
+		
+		ball.x = 50;
+		ball.y = 100;
+		
+		function drawFrame() {
+			window.requestAnimationFrame(drawFrame, canvas);
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			ball.x += vx;
+			ball.y += vy;
+			ball.draw(ctx);
+		};
+		
+		drawFrame();
+		
+	}
+
+</script>
+</head>
+<body onload="init()">
+<canvas id="optical" width="400" height="400">No support for canvas</canvas>
+</body>
+</html>

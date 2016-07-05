@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Animate Example</title>
+    <script>
+        var ctx;
+        var canvas; 
+		var x=0;
+        function init() {
+			canvas = document.getElementById("mycan");
+            ctx = canvas.getContext("2d"); // cxt short for context
+            ctx.clearRect(0,0,canvas.width,canvas.height); //clear the canvas
+            setInterval(draw,20); //calls draw every 20 milliseconds
+        }
+            
+        function draw() {
+		ctx.clearRect(0,0,canvas.width,canvas.height); //clear the canvas
+        //begin pink rectangle
+            ctx.strokeStyle = '#ff00ff';//super pink
+            ctx.strokeRect(x,200,250,150); //make an outlined rectangle
+			ctx.fillStyle='#990099'; //fuchsia
+			ctx.fillRect(x+1,201,249,149); //why did I do this?
+        //end pink rectangle
+		x++; 
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="1000" height="1000" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - White's</title>
+<meta charset="UTF-8">
+<script type="text/javascript">	
+	function draw() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		var black = "#000000";
+		var grey = "#CCCCCC";
+		var y = 0;
+		var x = 0;
+		var lineHeight = Math.floor(canvas.height / 9);
+		var greyWidth = Math.floor(canvas.width / 5);
+		
+		ctx.fillStyle = "#FFFFFF";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		
+		for (var i = 0; i < 5; i++) {
+			ctx.fillStyle = black;
+			ctx.fillRect(x, y, canvas.width, lineHeight);
+			ctx.fillStyle = grey;
+			ctx.fillRect(greyWidth, y, greyWidth, lineHeight);
+			if (i < 4) {
+				ctx.fillRect(3 * greyWidth, y + lineHeight, greyWidth, lineHeight);
+			}
+			y += lineHeight * 2;
+		}
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 700px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #000080">
+<p>White's illusion: which grey is darker?</p>
+<canvas id="optical" width="600" height="400">No support for canvas</canvas>
+</div>
+</body>
+</html>

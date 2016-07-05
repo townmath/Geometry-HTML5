@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Optical Illusion</title>
+    <script>
+        var ctx;
+        var canvas;         
+		function init() {
+			canvas = document.getElementById("mycan");
+			ctx = canvas.getContext("2d");
+			ctx.fillStyle =  "#FF0000";
+			ctx.strokeStyle = "#000000";
+			//ctx.save(); //saves current state of canvas       (not needed here, but important)
+			ctx.translate(canvas.width / 2, canvas.height / 2); //translates origin to middle
+			ctx.rotate(Math.PI/12);  // rotates axes 15 degrees
+			setInterval(draw, 100);
+		}
+		function draw() {
+			//ctx.restore(); //restores canvas to saved position (not needed here, but important)
+			ctx.clearRect(-1 * canvas.width/2, -1 * canvas.height/2, canvas.width, canvas.height);
+		//begin axes
+			ctx.beginPath();
+			ctx.moveTo(0,150);
+			ctx.lineTo(0,-150);
+			ctx.moveTo(150,0);
+			ctx.lineTo(-150,0);
+			ctx.stroke();
+		//end axes
+		//begin rectangle
+			ctx.fillRect(10,20,50,70);
+		}
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="300" height="300" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

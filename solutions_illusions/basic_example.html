@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Optical Illusion</title>
+    <script>
+        var ctx;
+        var canvas;         
+        function init() {
+			canvas = document.getElementById("mycan");
+            ctx = canvas.getContext("2d"); // cxt short for context
+            ctx.clearRect(0,0,canvas.width,canvas.height); //clear the canvas
+            draw();
+        }
+            
+        function draw() {
+        //begin green rectangle
+            ctx.fillStyle = '#00ff00'; //neon green
+            ctx.fillRect(0,0,50,25); //make a solid rectangle
+        //end green rectangle
+        //begin red rectangle
+            ctx.strokeStyle = '#ff0000';//super red
+            ctx.strokeRect(75,75,50,25); //make an outlined rectangle
+        //end red rectangle
+        //begin blue square
+            ctx.strokeStyle = '#000099'; //dark blue
+			ctx.lineWidth=2;//thicker stroke line 
+			ctx.fillStyle='#0000ff';// light blue
+			ctx.fillRect(50,40,20,20); //make a solid square
+            ctx.strokeRect(50,40,20,20); //make an outlined square
+        //end blue square
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="300" height="300" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

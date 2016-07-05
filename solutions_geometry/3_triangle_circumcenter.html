@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Triangle Circumcenter</title>
+		<meta charset="utf-8">
+
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		
+			<script type="text/javascript">
+				var canvas = document.getElementById("myCanvas");
+				var context = canvas.getContext("2d");
+				//triangle leg 1
+				context.beginPath(); // Start the path
+				context.moveTo(20, 120); // Set the path origin
+				context.lineTo(200, 150); // Set the path destination
+				context.lineTo(75, 200); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Fill the path
+				//connect lines
+				context.beginPath();
+				context.arc(113.38,114.7,93.53,0,Math.PI*2,true);
+				context.stroke();
+		</script>
+	</body>
+</html>

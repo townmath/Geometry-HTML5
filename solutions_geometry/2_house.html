@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>House</title>
+    <script>
+        var ctx;
+        var canvas;         
+        function init() {
+			canvas = document.getElementById("mycan");
+            ctx = canvas.getContext("2d"); // cxt short for context
+            ctx.clearRect(0,0,canvas.width,canvas.height); //clear the canvas
+            draw();
+        }
+            
+        function draw() {
+        //begin house base
+            ctx.fillStyle = '#00ff00'; //neon green
+            ctx.fillRect(canvas.width*.1,canvas.height*.4,canvas.width*.8,canvas.height*.6); //make a solid rectangle
+        //end house base
+		//begin chimney
+            ctx.strokeStyle = '#0000ff'; // blue
+            ctx.strokeRect(canvas.width*.25,canvas.height*.15,canvas.width*.08,canvas.height*.15); //make an outlined square		
+		//end chimney
+        //begin red roof
+            ctx.fillStyle = '#ff0000';//super red
+			ctx.beginPath(); // Start the path
+			ctx.moveTo(canvas.width*.1, canvas.height*.4); // Set the path origin
+			ctx.lineTo(canvas.width*.5, canvas.height*.1); // Set the path destination
+			ctx.lineTo(canvas.width*.9, canvas.height*.4); // Set the path destination
+			ctx.closePath(); // Close the path
+			ctx.fill(); // Fill the path
+        //end red roof
+        //begin door
+            ctx.strokeStyle = '#000099'; //dark blue
+			ctx.fillStyle='#ffffff';// white
+			ctx.fillRect(canvas.width*.45,canvas.height*.8,canvas.width*.1,canvas.height*.2); //make a solid square
+            ctx.strokeRect(canvas.width*.45,canvas.height*.8,canvas.width*.1,canvas.height*.2); //make an outlined square
+        //end blue square
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="500" height="500" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

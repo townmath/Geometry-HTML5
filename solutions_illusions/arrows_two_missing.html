@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Which line is the longest?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var canvas;
+	var ctx;
+	function init() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		draw();
+	}
+	function draw() {
+		ctx.beginPath();
+	//put top arrow here
+	//begin middle arrow
+		ctx.moveTo(250,200);
+		ctx.lineTo(200,250);
+		ctx.lineTo(500,250);
+		ctx.lineTo(550,200);
+		ctx.moveTo(200,250);
+		ctx.lineTo(250,300);
+		ctx.moveTo(500,250);
+		ctx.lineTo(550,300);
+	//end middle arrow
+	//put bottom arrow here
+		ctx.stroke();
+	}
+</script>
+</head>
+<body onload="init()">
+<canvas id="optical" width="700" height="500">No support for canvas</canvas>
+</body>
+</html>

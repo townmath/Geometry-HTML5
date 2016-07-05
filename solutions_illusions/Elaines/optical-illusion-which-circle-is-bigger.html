@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - which red round is bigger?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var smallRadius = 25;
+	var midRadius = 50;
+	var largeRadius = 70;
+	var border = 15;
+	var filler = 2;
+
+	
+	function draw() {
+
+		var x;
+		var y;
+		var xx;
+		var yy;
+		var ctx;
+		var d;
+		var angle;
+		var drawangle;
+		var count;
+
+		ctx = document.getElementById("optical").getContext("2d");
+
+		// center of small flower
+		// hold onto the center of this circle
+		// all other circles will be drawn at a distance from this one
+
+		x = border + (2 * smallRadius) + filler + midRadius;
+		y = x;
+		ctx.beginPath();
+		ctx.fillStyle = "#FF0000";
+		ctx.arc(x, y, midRadius, 0, Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+
+		ctx.save();
+		ctx.translate(x, y);  // move center of drawing to center of the red circle
+		
+		
+		// For rest of small circles
+		ctx.fillStyle = "#0000FF";
+		d = smallRadius + midRadius + filler;
+		angle = Math.PI / 4;  // 45 degrees
+		count = 0;
+
+		while (count < 8) {
+
+			xx = (d * Math.cos(0.0));
+			yy = (d * Math.sin(0.0));
+			ctx.beginPath();
+			ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+			ctx.closePath();
+			ctx.fill();
+			count++;
+			ctx.rotate(angle);
+		}
+
+
+		ctx.restore();  // move coordinates back to normal
+
+
+		// center of large flower
+		// hold onto the center of this circle
+		// all other circles will be drawn at a distance from this one
+		x = border + (2 * largeRadius) + filler + midRadius + 200;  // directly underneath
+		y = border + (15 * filler) + (4 * smallRadius) + (3 * midRadius) + (2 * largeRadius);
+		ctx.beginPath();
+		ctx.fillStyle = "#FF0000";
+		ctx.arc(x, y, midRadius, 0, Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		ctx.save();
+		ctx.translate(x, y);
+		ctx.rotate(Math.PI/-2);  // so that the first circle is above the red one, not to the right
+
+		// For rest of largecircles
+		ctx.fillStyle = "#0000FF";
+		d = largeRadius + midRadius + filler;
+		angle = (Math.PI * 2) / 5;
+		count = 0;			
+
+
+		while (count < 5) {
+			xx = (d * Math.cos(0.0));
+			yy = (d * Math.sin(0.0));
+			ctx.beginPath();
+			ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+			ctx.closePath();
+			ctx.fill();
+			count++;
+			ctx.rotate(angle);
+		}
+		ctx.restore();
+
+
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 700px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #000080">
+<p>Which red circle is larger?</p>
+<canvas id="optical" width="600" height="650">No support for canvas</canvas>
+</div>
+</body>
+</html>

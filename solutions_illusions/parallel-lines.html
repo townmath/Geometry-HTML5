@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Are these parallel?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var ctx;
+	var canvas;
+	var x;
+	var y;
+	var sq = 50;
+	var count;
+
+	function drawRow() {
+		count = 0;
+		while (count < 7) {
+			ctx.fillRect(x,y,sq,sq);
+			x += 2*sq;
+			count++;
+		}
+		x = 0;
+		y += sq;
+
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.moveTo(x,y);
+		ctx.lineTo(canvas.width, y);
+		ctx.stroke();
+	}
+
+	function draw() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+		x = 0;
+		y = 0;
+		drawRow();
+
+		x = 15;	
+		drawRow();
+
+		x = 30;
+		drawRow();
+
+		x = 15;
+		drawRow();
+	
+		x = 0;
+		drawRow();
+
+		x = 15;	
+		drawRow();
+
+		x = 30;
+		drawRow();
+
+		x = 15;
+		drawRow();
+	
+		
+		
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<canvas id="optical" width="700" height="400">No support for canvas</canvas>
+</body>
+</html>

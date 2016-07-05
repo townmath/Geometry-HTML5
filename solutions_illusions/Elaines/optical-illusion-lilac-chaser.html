@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - Lilac Chaser</title>
+<meta charset="UTF-8">
+<script type="text/javascript">	
+	var canvas;
+	var ctx;
+	var insideColor = "rgba(255,0,255,1)";
+	var outsideColor = "rgba(222,165,222,0)";
+	var radius = 40;
+	var angle = Math.PI / 6; //30 degrees;
+	var angle90 = Math.PI / 2;
+	var noDraw = 0;
+	var grd; // for gradient
+	var intervalHandle;
+	var midX;
+	var midY;
+	
+	function updateInterval(ms) {
+		clearInterval(intervalHandle);
+		intervalHandle = setInterval(draw,ms);
+	}
+	
+	function draw() {
+		ctx.fillStyle="#CCCCCC";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+			
+		ctx.fillStyle = grd;
+		for (i = 0; i < 12; i++) {
+			if (i == noDraw)
+				continue;
+			ctx.save();
+			var rotAngle = angle * i - angle90;
+			ctx.translate(canvas.width/2, canvas.height/2);
+			ctx.rotate(rotAngle);
+			ctx.beginPath();
+			ctx.arc(220, 0, radius, 0, Math.PI * 2);
+			ctx.closePath();
+			ctx.fill();
+			ctx.restore();
+		}
+					
+		noDraw++;
+		if (noDraw >= 12)
+			noDraw = 0;
+		
+		ctx.fillStyle = "#000000";
+		ctx.lineWidth = 2;
+		
+		ctx.beginPath();
+		ctx.moveTo(midX, midY - 20);
+		ctx.lineTo(midX, midY + 20);
+			
+		ctx.moveTo(midX - 20, midY);
+		ctx.lineTo(midX + 20, midY);
+		ctx.stroke();
+	}
+	
+	function init() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+
+		grd = ctx.createRadialGradient(220, 0, 0, 220, 0, radius);
+		// pink
+		grd.addColorStop(0, insideColor);
+		// light pink
+		grd.addColorStop(1, outsideColor);
+		
+		midX = canvas.width/2;
+		midY = canvas.height/2;
+
+		draw();
+		intervalHandle = setInterval(draw,100);
+	}
+
+</script>
+</head>
+<body onload="init()">
+<div style="text-align: center; width: 700px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #000080; padding: 10px">
+<p>The lilac chaser - stare at the cross in the center.  Does the empty spot turn green?  Do the circles disappear?</p>
+<div style="font-size: medium;margin: 30px">Rotation Speed:&nbsp;&nbsp;Fast&nbsp;<input id="speed" type="range" min="50" max="750" step="10" value="200" onchange="updateInterval(this.value)">&nbsp;Slow</input></div>
+
+<canvas id="optical" width="600" height="600">No support for canvas</canvas>
+</div>
+</body>
+</html>

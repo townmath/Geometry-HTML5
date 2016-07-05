@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>animate robot</title>
+	<script>
+		var x=0;
+		var dx=1;
+		var context;
+		
+		function init() {
+			var can = document.getElementById("mycan");
+			context = can.getContext("2d"); 
+			return setInterval(draw,10);
+		}
+		
+		function draw() {
+			context.clearRect(0,0,1500,600); // clear everything
+			//robot head
+			context.strokeRect(x+20,20,460,460); // Square - head (notice: default fillStyle is black)
+			context.fillStyle = '#00ff00'; // green eyes
+			context.fillRect(x+150, 80, 50, 50); // Square - left eye (x, y, width, height)
+			context.fillRect(x+300, 80, 50, 50); // Square - right eye x, y is the location of top corner	
+			context.strokeStyle = '#ff0000'; // red mouth		
+			context.strokeRect(x+150, 300, 200, 100); // Rectangle - mouth (x, y, width, height)
+			context.fillStyle = '#0000ff'; //blue nose
+			context.fillRect(x+200, 180, 100, 50); // Rectangle - nose
+			//robot body
+			context.strokeStyle = '#000000' // black body
+			context.beginPath(); // Start the path
+			context.moveTo(x+250, 480); // Set the path origin
+			context.lineTo(x+250, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Outline the path
+			//robot arms
+			context.beginPath(); // Start the path
+			context.moveTo(x+200, 500); // Set the path origin
+			context.lineTo(x+300, 500); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//robot left leg
+			context.beginPath(); // Start the path
+			context.moveTo(x+200, 600); // Set the path origin
+			context.lineTo(x+250, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//robot right leg
+			context.beginPath(); // Start the path
+			context.moveTo(x+250, 550); // Set the path origin
+			context.lineTo(x+300, 600); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			x += dx;
+		}
+	</script>
+</head>
+<body onload="init()">
+	<canvas width="1500px" height="600px" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

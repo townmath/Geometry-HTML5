@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Which red line is longer?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	function draw() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		
+		ctx.lineWidth = 3;
+		
+				
+		ctx.strokeStyle = "#FF0000";
+		ctx.beginPath();
+		ctx.moveTo(110, 375);
+		ctx.lineTo(310, 125);
+		ctx.lineTo(510, 375);
+		ctx.stroke();
+		
+		ctx.strokeStyle = "#000000";
+		
+		ctx.beginPath();
+		ctx.moveTo(110, 375);
+		ctx.lineTo(190, 125);
+		ctx.lineTo(590, 125);
+		ctx.lineTo(510, 375);
+		ctx.closePath();
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(310, 125);
+		ctx.lineTo(230, 375);
+		ctx.stroke();
+
+	}
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 750px; font-family: Arial,sans-serif; font-size: x-large; border: 1px solid #000000; margin: 0 auto;">
+<p>Which red line is longer?</p>
+<canvas id="optical" width="700" height="400">No support for canvas</canvas>
+</div>
+</body>
+</html>

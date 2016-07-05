@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>expand</title>
+	<script>
+		var baseX=2;
+		var baseY=1;
+		var x=baseX;
+		var y=baseY;
+		var cnt=0;
+		var interval=1000; // milliseconds
+		var dx=2;//multiplier
+//		var dy=3;//multiplier
+		var ctx;
+		var can;
+		
+		function init() {
+			can = document.getElementById("mycan");
+			ctx = can.getContext("2d"); // cxt short for context
+			ctx.clearRect(0,0,can.width,can.height); //x,y,width, height
+			setInterval(draw,interval); // do, milliseconds
+		}
+		
+		function draw() {
+			ctx.clearRect(0,0,can.width,can.height); 
+			ctx.fillStyle="#00ffff";
+			ctx.fillRect(0,0,x,y);
+			if ((x>1200)||(y>600)) {
+				document.getElementById("message").innerHTML = 'For the multiplier: '+ dx + ' the time was: '+ cnt+ ' seconds.';
+				cnt=0;
+				dx+=1;
+				x=baseX;
+				y=baseY;
+				//setTimeout(document.getElementById("message").innerHTML = (' Now the multiplier is: ', dx),4000);//4 seconds
+			}
+			else {
+				x = x*dx;
+				y = y*dx;
+				cnt += 1;
+			}
+		}
+	</script>
+</head>
+<body><!-- onload="init()"-->
+If the sides of your shape double every cycle, how long will it take to fill the screen? What about triple? quadruple? n?<button onclick="init()">start!</button>
+<p id="message"></p>
+	<canvas width="1200" height="600" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

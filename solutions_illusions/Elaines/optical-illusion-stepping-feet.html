@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - which red round is bigger?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var canvas;
+	var ctx;
+	var x;
+	var xx;
+	var bars;
+	var cars;
+	var count;
+	var showGrid = true;
+
+	function init() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+		
+		x = 0;
+		bars = canvas.width/50;
+		cars = bars * 4;
+		setInterval(draw,10);
+
+	}
+	
+	function toggle() {
+		showGrid = !showGrid;
+	}
+
+	function draw() {
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		if(showGrid) {
+			count = 0;
+			ctx.fillStyle="#000000";
+			while(count < 100) {
+				ctx.fillRect(count*bars*2,0,bars,canvas.height);
+				count++;
+			}
+		}
+		ctx.fillStyle="#FFFF00";
+		ctx.fillRect(x, 50, cars, bars);
+
+		ctx.fillStyle="#0000FF";
+		ctx.fillRect(x, 150, cars, bars);
+
+		x++;
+		if(x > canvas.width - cars)
+			x = 0;
+
+
+	}
+
+</script>
+</head>
+<body onload="init()">
+<div style="text-align: center; width: 1100px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #000080">
+<button type="button" onclick="toggle()">Toggle Grid</button></br>
+<canvas id="optical" width="1000" height="600">No support for canvas</canvas>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - Can you count the black dots?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">	
+	function draw() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		var numAcross = 8;
+		var numDown = 6;
+		var size = 65;
+		var space = 8;
+		var radius = Math.sqrt(2) * space / 2;
+		var x = 0;
+		var y = 0;
+		
+		ctx.fillStyle = "#C0C0C0";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		
+		// the squares
+		ctx.fillStyle = "#000000";
+		for (var i = 0; i < numDown; i++) {
+			for (var j = 0; j < numAcross; j++) {
+				ctx.fillRect(x,y,size,size);
+				x += size + space;
+			}
+			x = 0;
+			y += size + space;
+		}
+		
+		// the circles
+		x = size + space / 2;
+		y = size + space / 2;
+		ctx.fillStyle = "#FFFFFF";
+		for (var i = 0; i < numDown - 1; i++) {
+			for (var j = 0; j < numAcross - 1; j++) {
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, Math.PI * 2);
+				ctx.closePath();
+				ctx.fill();
+				x += size + space;
+			}
+			x = size + space / 2;
+			y += size + space;
+		}
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 750px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #FF0000">
+<p>Can you count the black dots?</p>
+<canvas id="optical" width="576" height="430">No support for canvas</canvas>
+</div>
+</body>
+</html>

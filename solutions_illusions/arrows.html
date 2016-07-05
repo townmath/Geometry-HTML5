@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Are these equal length?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	function draw() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		ctx.beginPath();
+		ctx.moveTo(150,50);
+		ctx.lineTo(200,100);
+		ctx.lineTo(500,100);
+		ctx.lineTo(550,50);
+		ctx.moveTo(150,150);
+		ctx.lineTo(200,100);
+		ctx.moveTo(500,100);
+		ctx.lineTo(550,150);
+		
+		ctx.moveTo(250,200);
+		ctx.lineTo(200,250);
+		ctx.lineTo(500,250);
+		ctx.lineTo(550,200);
+		ctx.moveTo(200,250);
+		ctx.lineTo(250,300);
+		ctx.moveTo(500,250);
+		ctx.lineTo(550,300);
+		
+		ctx.moveTo(250,350);
+		ctx.lineTo(200,400);
+		ctx.lineTo(500,400);
+		ctx.lineTo(450,350);
+		ctx.moveTo(200,400);
+		ctx.lineTo(250,450);
+		ctx.moveTo(450,450);
+		ctx.lineTo(500,400);
+		ctx.stroke();
+	}
+</script>
+</head>
+<body onload="draw()">
+<canvas id="optical" width="700" height="500">No support for canvas</canvas>
+</body>
+</html>

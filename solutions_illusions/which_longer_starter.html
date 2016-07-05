@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Which line is longer?</title>
+		<meta charset="utf-8">
+
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		
+			<script type="text/javascript">
+				var canvas = document.getElementById("myCanvas");
+				var context = canvas.getContext("2d");
+				//triangle leg 1
+				context.beginPath(); // Start the path
+				context.moveTo(20, 20); // Set the path origin
+				context.lineTo(200, 50); // Set the path destination
+				context.moveTo(40,45);
+				context.lineTo(75, 100); // Set the path destination
+//				context.stroke();
+//				context.beginPath();
+				context.moveTo(50+10,20);
+				context.arc(50,20,10,0,Math.PI*2);
+//				context.closePath(); // Close the path
+				context.stroke(); // Fill the path
+		</script>
+	</body>
+</html>

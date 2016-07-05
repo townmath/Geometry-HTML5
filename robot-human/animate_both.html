@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>animate both</title>
+	<script>
+		var x=0;
+		var dx=1;
+		var context;
+			function init() {
+			x=0;
+			var can = document.getElementById("mycan");
+			context = can.getContext("2d"); 
+			return setInterval(draw,10);
+		}
+		
+		function draw() {
+			context.clearRect(0,0,1500,600); // clear everything
+			//robot head
+			context.strokeRect(x+20,20,460,460); // Square - head (notice: default fillStyle is black)
+			context.fillStyle = '#00ff00'; // green eyes
+			context.fillRect(x+150, 80, 50, 50); // Square - left eye (x, y, width, height)
+			context.fillRect(x+300, 80, 50, 50); // Square - right eye x, y is the location of top corner	
+			context.strokeStyle = '#ff0000'; // red mouth		
+			context.strokeRect(x+150, 300, 200, 100); // Rectangle - mouth (x, y, width, height)
+			context.fillStyle = '#0000ff'; //blue nose
+			context.fillRect(x+200, 180, 100, 50); // Rectangle - nose
+			//robot body
+			context.strokeStyle = '#000000' // black body
+			context.beginPath(); // Start the path
+			context.moveTo(x+250, 480); // Set the path origin
+			context.lineTo(x+250, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Outline the path
+			//robot arms
+			context.beginPath(); // Start the path
+			context.moveTo(x+200, 500); // Set the path origin
+			context.lineTo(x+300, 500); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//robot left leg
+			context.beginPath(); // Start the path
+			context.moveTo(x+200, 600); // Set the path origin
+			context.lineTo(x+250, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//robot right leg
+			context.beginPath(); // Start the path
+			context.moveTo(x+250, 550); // Set the path origin
+			context.lineTo(x+300, 600); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+
+			//human
+			//Head	
+			context.beginPath(); // Start the path
+			context.arc(1000-x, 250, 230, 0, Math.PI*2, false); // Draw a circle 
+			context.closePath(); // Close the path	
+			context.stroke(); //stroke the path
+			//Eyes
+			context.fillStyle = '#0000ff'; // blue eyes
+			context.beginPath(); // Start the path
+			context.arc(925-x, 105, 25, 0, Math.PI*2, false); // Draw a circle - left eye (x, y, radius, starting angle, ending angle, true = counter clockwise, false = clockwise
+			context.closePath(); // Close the path
+			context.fill(); // Fill the path
+			context.beginPath(); // Start the path
+			context.arc(1075-x, 105, 25, 0, Math.PI*2, false); // Draw a circle - right eye
+			context.closePath(); // Close the path
+			context.fill(); // Fill the path
+			// Mouth		
+			context.strokeStyle = '#ff0000'; // red mouth	
+			context.beginPath(); // Start the path
+			context.arc(1000-x, 300, 100, 0, Math.PI, false); // Draw a semi-circle - mouth
+			context.closePath(); // Close the path	
+			context.stroke(); //stroke the path
+			// Challenge: add a nose and body
+			context.fillStyle = '#00ff00'; // green nose	
+			context.beginPath(); // Start the path
+			context.arc(1000-x, 230, 50, 0, Math.PI, true); // Draw a semi-circle - nose
+			context.closePath(); // Close the path	
+			context.fill(); //fill the path
+			//bonus bonus: nostrils
+			context.fillStyle = '#ffffff'; // white nostrils	
+			context.beginPath(); // Start the path
+			context.arc(975-x, 230, 15, 0, Math.PI, true); // Draw a semi-circle - left nostril
+			context.closePath(); // Close the path	
+			context.fill(); //stroke the path
+			context.beginPath(); // Start the path
+			context.arc(1025-x, 230, 15, 0, Math.PI, true); // Draw a semi-circle - right nostril
+			context.closePath(); // Close the path	
+			context.fill(); //stroke the path
+			//body
+			context.strokeStyle = '#000000' // black body
+			context.beginPath(); // Start the path
+			context.moveTo(1000-x, 480); // Set the path origin
+			context.lineTo(1000-x, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Outline the path
+			//arms
+			context.beginPath(); // Start the path
+			context.moveTo(950-x, 500); // Set the path origin
+			context.lineTo(1050-x, 500); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//left leg
+			context.beginPath(); // Start the path
+			context.moveTo(950-x, 600); // Set the path origin
+			context.lineTo(1000-x, 550); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			//right leg
+			context.beginPath(); // Start the path
+			context.moveTo(1000-x, 550); // Set the path origin
+			context.lineTo(1050-x, 600); // Set the path destination
+			context.closePath(); // Close the path
+			context.stroke(); // Fill the path
+			x += dx;
+		}
+	</script>
+</head>
+<body> 
+	<button type="button" onclick="init()">start animation!</button>
+	<canvas width="1500px" height="600px" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - which red round is bigger?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var smallRadius = 25;
+	var midRadius = 50;
+	var largeRadius = 70;
+	var border = 15;
+	var filler = 2;
+	
+	function draw() {
+
+		var x;
+		var y;
+		var xx;
+		var yy;
+		var ctx;
+		var d;
+		var angle;
+		var drawangle;
+
+		ctx = document.getElementById("optical").getContext("2d");
+
+		// center of small flower
+		// hold onto the center of this circle
+		// all other circles will be drawn at a distance from this one
+		x = border + (2 * smallRadius) + filler + midRadius;
+		y = x;
+		ctx.beginPath();
+		ctx.fillStyle = "#FF0000";
+		ctx.arc(x, y, midRadius, 0, Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+		
+		// For rest of small circles
+		ctx.fillStyle = "#0000FF";
+		d = smallRadius + midRadius + filler;
+		angle = Math.PI / 4;  // 45 degrees
+
+		// Top center circle
+		xx = x;
+		yy = y - d;
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+//		ctx.closePath();
+		ctx.fill();
+
+		// Q1 circle
+		xx = x + (d * Math.cos(angle));
+		yy = y - (d * Math.sin(angle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+//		ctx.closePath();
+		ctx.fill();
+
+		// Right circle
+		xx = x + d;
+		yy = y;
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+//		ctx.closePath();
+		ctx.fill();
+
+		// Q4 circle
+		xx = x + (d * Math.cos(angle));
+		yy = y + (d * Math.sin(angle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+//		ctx.closePath();
+		ctx.fill();
+
+		// Bottom circle
+		xx = x;
+		yy = y + d;
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// Q3 circle
+		xx = x - (d * Math.cos(angle));
+		yy = y + (d * Math.sin(angle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// Left circle
+		xx = x - d;
+		yy = y;
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// Q2 circle
+		xx = x - (d * Math.cos(angle));
+		yy = y - (d * Math.sin(angle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,smallRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// center of large flower
+		// hold onto the center of this circle
+		// all other circles will be drawn at a distance from this one
+		x = border + (2 * largeRadius) + filler + midRadius;  // directly underneath
+		y = border + (15 * filler) + (4 * smallRadius) + (3 * midRadius) + (2 * largeRadius);
+		ctx.beginPath();
+		ctx.fillStyle = "#FF0000";
+		ctx.arc(x, y, midRadius, 0, Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// For rest of largecircles
+		ctx.fillStyle = "#0000FF";
+		d = largeRadius + midRadius + filler;
+		angle = (Math.PI * 2) / 5;
+		drawangle = angle;			
+
+		// Top circle
+		xx = x;
+		yy = y - d;
+		ctx.beginPath();
+		ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// Upper Right
+		drawangle = 18.0 * Math.PI / 180;
+		xx = x + (d * Math.cos(drawangle));
+		yy = y - (d * Math.sin(drawangle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+
+		// Lower Right
+		drawangle = 54.0 * Math.PI / 180; 
+		xx = x + (d * Math.cos(drawangle));
+		yy = y + (d * Math.sin(drawangle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+
+		// Lower Left
+		xx = x - (d * Math.cos(drawangle));
+		yy = y + (d * Math.sin(drawangle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();	
+		
+		// Upper Left
+		drawangle = 18.0 * Math.PI / 180;
+		xx = x - (d * Math.cos(drawangle));
+		yy = y - (d * Math.sin(drawangle));
+		ctx.beginPath();
+		ctx.arc(xx,yy,largeRadius,0,Math.PI*2, true);
+		ctx.closePath();
+		ctx.fill();
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<canvas id="optical" width="600" height="1000">No support for canvax</canvas>
+</body>
+</html>

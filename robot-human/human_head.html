@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Human Head</title>
+		<meta charset="utf-8">
+
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		
+			<script type="text/javascript">
+				var canvas = document.getElementById("myCanvas");
+				var context = canvas.getContext("2d");
+				//Head	
+				context.beginPath(); // Start the path
+				context.arc(250, 250, 230, 0, Math.PI*2, false); // Draw a semi-circle - smile
+				context.closePath(); // Close the path	
+				context.stroke(); //stroke the path
+				//Eyes
+				context.fillStyle = '#0000ff'; // blue eyes
+				context.beginPath(); // Start the path
+				context.arc(175, 105, 25, 0, Math.PI*2, false); // Draw a circle - left eye (x, y, radius, starting angle, ending angle, true = counter clockwise, false = clockwise
+				context.closePath(); // Close the path
+				context.fill(); // Fill the path
+				context.beginPath(); // Start the path
+				context.arc(325, 105, 25, 0, Math.PI*2, false); // Draw a circle - right eye
+				context.closePath(); // Close the path
+				context.fill(); // Fill the path
+				// Mouth		
+				context.strokeStyle = '#ff0000'; // red mouth	
+				context.beginPath(); // Start the path
+				context.arc(250, 300, 100, 0, Math.PI, false); // Draw a semi-circle - smile
+				context.closePath(); // Close the path	
+				context.stroke(); //stroke the path
+				// Challenge: add a nose and body
+				
+		</script>
+	</body>
+</html>

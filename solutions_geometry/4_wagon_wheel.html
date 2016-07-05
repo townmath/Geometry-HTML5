@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wheel</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var ctx;
+	var canvas;
+	var degrees = 10;
+	var rotationAngle = degrees * Math.PI / 180;
+	var spokesAngle = Math.PI / 4; // 45 degrees
+	var radius = 100;
+	var angleOfRotation = 0;
+	var width;
+	var height;
+	var spokesCountAngle;
+	var x;
+	var y;
+	var moveBy = 2 * radius * Math.sin(rotationAngle);
+	var moveX = 0;
+	var intervalHandle;
+	var isAnimated = true;
+
+	function init() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+		width = canvas.width;
+		height =  canvas.height;	
+		intervalHandle = setInterval(draw,250);
+		ctx.save();
+	}
+	
+	function updateInterval(ms) {
+		clearInterval(intervalHandle);
+		intervalHandle = setInterval(draw,ms);
+	}
+	
+	function animate() {
+		if (isAnimated)
+			clearInterval(intervalHandle);
+		var ms = document.getElementById("speed").value;
+		intervalHandle = setInterval(draw,ms);
+		isAnimated = true;
+	}
+	
+	function stepp() {
+		if (isAnimated) {
+			clearInterval(intervalHandle);
+			isAnimated = false;
+		}
+		draw();
+	}
+	
+	function draw() {
+		ctx.restore();
+		ctx.clearRect(0, 0, width, height);
+		ctx.save();
+		ctx.translate(moveX, height / 2);
+		ctx.rotate(angleOfRotation);
+
+		// Draw the circle
+		ctx.beginPath();
+		ctx.arc(0,0,radius,0,2*Math.PI);
+		ctx.stroke();
+		
+		// Draw the spokes
+		ctx.beginPath();
+		spokesCountAngle = 0;
+		for (var i = 0; i < 8; i++) {
+			x = radius * Math.cos(spokesCountAngle);
+			y = radius * Math.sin(spokesCountAngle);
+			ctx.moveTo(x,y);
+			ctx.lineTo(-x,-y);
+			spokesCountAngle += spokesAngle;
+		}
+		ctx.stroke();
+
+		angleOfRotation += rotationAngle;
+		moveX += moveBy;
+		if (moveX > width - moveBy)
+			moveX = 0;
+	}
+
+</script>
+</head>
+<body onload="init()">
+<div>Wheel Speed:<br>Fast<input id="speed" type="range" min="10" max="250" step="10" value="250" onchange="updateInterval(this.value)">Slow</input></div>
+<div><input type="button" onclick="animate()" value="Animate">&nbsp;<input type="button" onclick="stepp()" value="Step"></div>
+<canvas id="optical" width="1200" height="450">No support for canvas</canvas>
+</body>
+</html>

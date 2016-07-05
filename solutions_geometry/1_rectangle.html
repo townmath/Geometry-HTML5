@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pink Rectangle</title>
+    <script>
+        var ctx;
+        var canvas; 
+		var x=0;
+        function init() {
+			canvas = document.getElementById("mycan");
+            ctx = canvas.getContext("2d"); // cxt short for context
+            ctx.clearRect(0,0,canvas.width,canvas.height); //clear the canvas
+        //begin pink rectangle
+			ctx.fillStyle='#990099'; //fuchsia
+			ctx.fillRect(1,1,249,149); //
+        //end pink rectangle
+		//begin rectangle outline
+		    ctx.strokeStyle = '#ff00ff';//super pink
+			ctx.beginPath(); // Start the path
+			ctx.moveTo(0, 0); // Set the path origin
+			ctx.lineTo(250, 0); //
+			ctx.lineTo(250, 150);
+			ctx.lineTo(0,150);
+			ctx.lineTo(0, 0); // Set the path destination
+			ctx.closePath();
+			ctx.stroke();
+		//end rectangle outline
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="1000" height="1000" id="mycan">No Canvas Support</canvas>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Is this a square?</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var ctx;
+	var canvas;
+	var x;
+	var y;
+
+	function draw() {
+		canvas = document.getElementById("optical");
+		ctx = canvas.getContext("2d");
+
+		ctx.fillStyle="#000080";
+		ctx.strokeStyle="#000080";
+		
+		ctx.strokeRect(canvas.width/2 - 300, 100, 600, 100);
+		ctx.strokeRect(canvas.width/2 - 150, 225, 300, 150);
+		
+		ctx.beginPath();
+		ctx.moveTo(canvas.width/2 - 15, 225);
+		ctx.lineTo(canvas.width/2, 200);
+		ctx.lineTo(canvas.width/2 + 15, 225);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.moveTo(550, 100);
+		ctx.lineTo(480, 25);
+		ctx.lineTo(620, 25);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		x = 50;
+		while (x <= 450) {
+			ctx.moveTo(x,200);
+			ctx.lineTo(x + 200, 100);
+			x += 50;
+		}
+
+		y = 175;
+		x = 200;
+		while (y >= 100) {
+			ctx.moveTo(50, y);
+			ctx.lineTo(x, 100);
+			x -= 50;
+			y -= 25;
+		}
+		
+		y = 125;
+		x = 500;
+		while (y <= 200) {
+			ctx.moveTo(x, 200);
+			ctx.lineTo(650, y);
+			x += 50;
+			y += 25;
+		}
+
+		ctx.moveTo(200, 225);
+		ctx.lineTo(500, 375);
+		
+		x = 450;
+		y = 250;
+	
+		while (x > 200) {
+			ctx.moveTo(x, 375);
+			ctx.lineTo(200, y);
+			x -= 50;
+			y += 25;
+			
+		}
+		
+		x = 250;
+		y = 350;
+	
+		while (x < 500) {
+			ctx.moveTo(x, 225);
+			ctx.lineTo(500, y);
+			x += 50;
+			y -= 25;
+			
+		}
+		ctx.stroke();
+		
+		
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 750px; font-family: Arial,sans-serif; font-size: x-large; border: 1px solid #000000; margin: 0 auto">
+<p>Is this a level balance?</p>
+<canvas id="optical" width="700" height="400">No support for canvas</canvas>
+</div>
+</body>
+</html>

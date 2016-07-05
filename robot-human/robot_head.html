@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Robot Head</title>
+		<meta charset="utf-8">
+
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		
+			<script type="text/javascript">
+				var canvas = document.getElementById("myCanvas");
+				var context = canvas.getContext("2d");
+				context.strokeRect(20,20,460,460); // Square - head (notice: default fillStyle is black)
+				context.fillStyle = '#00ff00'; // green eyes  number sign needed in firefox, but not chrome
+				context.fillRect(150, 80, 50, 50); // Square - left eye (x, y, width, height)
+				context.fillRect(300, 80, 50, 50); // Square - right eye x, y is the location of top corner	
+				context.strokeStyle = '#ff0000'; // red mouth		
+				context.strokeRect(150, 300, 200, 100); // Rectangle - mouth (x, y, width, height)
+				// challenge: add a nose (bonus points if it is a different color (hint: blue='0000ff'))
+		</script>
+	</body>
+</html>

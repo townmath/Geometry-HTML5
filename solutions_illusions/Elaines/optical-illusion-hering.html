@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Optical Illusion - Hering</title>
+<meta charset="UTF-8">
+<script type="text/javascript">	
+	function draw() {
+		var canvas = document.getElementById("optical");
+		var ctx = canvas.getContext("2d");
+		var linesV = 16;
+		var lineH = 9;
+		var distV = canvas.height / linesV;
+		var distH = 15;
+		
+		ctx.fillStyle="#CCCCCC";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		
+		ctx.strokeStyle = "#000080";
+		for (var i = 0; i <= linesV; i++) {
+			var y = i * distV;
+			
+			ctx.beginPath();
+			ctx.moveTo(0, y);
+			ctx.lineTo(canvas.width, canvas.height - y);
+			ctx.stroke();
+		}
+		
+		for (var i = 0; i <= lineH; i++) {
+			var x = (i + 1) * distH;
+			ctx.beginPath();
+			ctx.moveTo(x, 0);
+			ctx.lineTo(canvas.width-x, canvas.height);
+			ctx.moveTo(x, canvas.height);
+			ctx.lineTo(canvas.width-x, 0);
+			ctx.stroke();
+		}
+		
+		ctx.strokeStyle="#CC0000";
+		ctx.lineWidth = 4;
+		
+		var x = (lineH + 1) * distH;
+		ctx.beginPath();
+		ctx.moveTo(x, 0);
+		ctx.lineTo(x, canvas.height);
+		ctx.stroke();
+		
+		ctx.moveTo(canvas.width - x, 0);
+		ctx.lineTo(canvas.width - x, canvas.height);
+		ctx.stroke();
+		
+	}
+
+</script>
+</head>
+<body onload="draw()">
+<div style="text-align: center; width: 500px; font-family: Arial,sans-serif; font-size: x-large; margin: 0 auto; border: 1px solid #000080">
+<p>The Hering illusion: are the red lines straight?</p>
+<canvas id="optical" width="400" height="640">No support for canvas</canvas>
+</div>
+</body>
+</html>
